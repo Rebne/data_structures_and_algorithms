@@ -8,6 +8,15 @@ type Node struct {
 	Right *Node
 }
 
+func inorder_dfs(root *Node) {
+	if root == nil {
+		return
+	}
+	inorder_dfs(root.Left)
+	fmt.Println(root.Value)
+	inorder_dfs(root.Right)
+}
+
 func iterative_inorder_dfs(root *Node) {
 	stack := []*Node{}
 	curr := root
@@ -25,6 +34,15 @@ func iterative_inorder_dfs(root *Node) {
 			curr = curr.Right
 		}
 	}
+}
+
+func preorder_dfs(root *Node) {
+	if root == nil {
+		return
+	}
+	fmt.Println(root.Value)
+	preorder_dfs(root.Left)
+	preorder_dfs(root.Right)
 }
 
 func iterative_preorder_dfs(root *Node) {
@@ -47,6 +65,14 @@ func iterative_preorder_dfs(root *Node) {
 	}
 }
 
+func postorder_dfs(root *Node) {
+	if root == nil {
+		return
+	}
+	postorder_dfs(root.Left)
+	postorder_dfs(root.Right)
+	fmt.Println(root.Value)
+}
 func iterative_postorder_dfs(root *Node) {
 	stack := []*Node{root}
 	visited := []bool{false}
@@ -95,7 +121,14 @@ func main() {
 	}
 
 	iterative_inorder_dfs(root)
+	fmt.Println("----------------")
+	inorder_dfs(root)
+	fmt.Println("----------------")
 	iterative_preorder_dfs(root)
+	fmt.Println("----------------")
+	preorder_dfs(root)
+	fmt.Println("----------------")
 	iterative_postorder_dfs(root)
-
+	fmt.Println("----------------")
+	postorder_dfs(root)
 }
